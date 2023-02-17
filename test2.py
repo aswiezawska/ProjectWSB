@@ -3,7 +3,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from appium import webdriver
 
 
-class MyTestCase(unittest.TestCase):
+class AndroidLoginTest(unittest.TestCase):
     invalid_email = "admin@gmail"
     valid_password = "admin123"
 
@@ -24,7 +24,7 @@ class MyTestCase(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-        # TC: ID002
+        # TC: ID002_userIsLoggedInWithWrongLoginData
         # 1. Open log in menu
         # 2. Enter invalid email
         # 3. Enter password
@@ -33,7 +33,7 @@ class MyTestCase(unittest.TestCase):
         # 6. Check if "username: admin@gmail" is displayed on the screen
         # 7. Check if "password: admin123" is displayed on the screen
 
-    def testID002(self):
+    def testID002_userIsLoggedInWithWrongLoginData(self):
         # 1. Open Log in menu and check if element is displayed
         el = self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, "Btn6")
         self.assertTrue(el.is_displayed())
@@ -49,8 +49,7 @@ class MyTestCase(unittest.TestCase):
         login_button.is_displayed()
         login_button.click()
         # 5. Check if text "Wrong Credentials" is displayed on the screen
-        wrong_credentials = self.driver.find_element(AppiumBy.XPATH,
-                                                     "*//android.widget.TextView[4][@text = 'Wrong Credentials']")
+        wrong_credentials = self.driver.find_element(AppiumBy.ID, "com.code2lead.kwad:id/Tv8")
         wrong_credentials.click()
         self.assertTrue(wrong_credentials.is_displayed())
         # 6. Check if text "username: admin@gmail" is displayed on the screen

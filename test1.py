@@ -4,7 +4,7 @@ from appium import webdriver
 
 
 
-class MyTestCase(unittest.TestCase):
+class AndroidLoginTest(unittest.TestCase):
 
     valid_email = "admin@gmail.com"
     valid_password = "admin123"
@@ -27,15 +27,16 @@ class MyTestCase(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-        #TC: ID001
+        #TC: ID001_userIsLoggedInWithProperLoginData
         # 1. Open log in menu
         # 2. Enter valid email
         # 3. Enter password
         # 4. Click on Login button
         # 5. Enter Admin
         # 6. Click submit button
+        # 7. Check if User is logged
 
-    def testID001(self):
+    def testID001_userIsLoggedInWithProperLoginData(self):
         # 1. Open Log in menu
         el = self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, "Btn6")
         # Check if element is displayed
@@ -51,13 +52,17 @@ class MyTestCase(unittest.TestCase):
         login_button = self.driver.find_element(AppiumBy.ID, "com.code2lead.kwad:id/Btn3")
         login_button.is_displayed()
         login_button.click()
-        # 5. Enter Admin
+        # 5. Enter Admin: Ania
         _enter_admin = self.driver.find_element(AppiumBy.ID, "com.code2lead.kwad:id/Edt_admin")
         _enter_admin.send_keys(self.enter_admin)
         # 6. Click submit button
         submit_button = self.driver.find_element(AppiumBy.ID, "com.code2lead.kwad:id/Btn_admin_sub")
         submit_button.is_displayed()
         submit_button.click()
+        # 7. Check if User is logged
+        user_logged = self.driver.find_element(AppiumBy.ID, "com.code2lead.kwad:id/Tv_admin")
+        self.assertTrue(user_logged.is_displayed())
+        user_logged.click()
 
 
 

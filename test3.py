@@ -3,7 +3,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from appium import webdriver
 
 
-class MyTestCase(unittest.TestCase):
+class AndroidEnterValueTest(unittest.TestCase):
     enter_value = "hello world!"
 
     # Setup class and configuration
@@ -23,14 +23,14 @@ class MyTestCase(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-        # TC: ID002
+        # TC: ID003_userCanEnterValueIntoField
         # 1. On my page: check if my page is loaded
         # 2. Click on "Enter some value" field
         # 3. Enter "hello world" in the "Enter some value" button
         # 4. Click "Submit" button
         # 5. Check if values "hello world" are displayed
 
-    def testID003(self):
+    def testID003_userCanEnterValueIntoField(self):
         # 1. On my page: check if my page is loaded
         self.driver.find_element(AppiumBy.XPATH, "//*[@text='Appium Demo']").is_displayed()
         # 2. Click on "Enter some value" field
